@@ -13,12 +13,19 @@ const todoSlice = createSlice({
 
       state.todos.push({
         id: uuidv4(),
-        text: action.payload,
+        text: action.payload.text,
         completed: false,
       });
     },
-    toggleTodoComplete(state, action) {},
-    deleteTodo(state, action) {},
+    toggleTodoComplete(state, action) {
+      const toggleTodo = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      );
+      toggleTodo.completed = !toggleTodo.completed;
+    },
+    deleteTodo(state, action) {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
+    },
   },
 });
 

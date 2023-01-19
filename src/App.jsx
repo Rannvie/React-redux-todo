@@ -9,22 +9,9 @@ import './App.css';
 function App() {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
-  const addTask = () => dispatch(addTodo(text));
-
-  const toggleTodoComplete = (id) => {
-    // setTodos(
-    //   todos.map((todo) => {
-    //     if (todo.id !== id) return todo;
-    //     return {
-    //       ...todo,
-    //       completed: !todo.completed,
-    //     };
-    //   })
-    // );
-  };
-
-  const deleteTodo = (id) => {
-    // setTodos(todos.filter((todo) => todo.id !== id));
+  const addTask = () => {
+    dispatch(addTodo({ text }));
+    setText('');
   };
 
   return (
