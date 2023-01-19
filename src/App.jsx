@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import TodoList from './components/TodoList';
+import TodoForm from './components/TodoForm';
 import { v4 as uuidv4 } from 'uuid';
-import { RiDeleteBin2Line } from 'react-icons/ri';
-import { FaCheck } from 'react-icons/fa';
+
 import './App.css';
 
 function App() {
@@ -40,31 +41,13 @@ function App() {
 
   return (
     <div className="App">
-      <label>
-        <input
-          placeholder="Enter new todo"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button onClick={addTodo}>Add Todo</button>
-      </label>
+      <TodoForm text={text} handleInput={setText} handleSubmit={addTodo} />
 
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => toggleTodoComplete(todo.id)}
-            />
-            <span>{todo.text}</span>
-            <RiDeleteBin2Line
-              className="deleteIcon"
-              onClick={() => deleteTodo(todo.id)}
-            />
-          </li>
-        ))}
-      </ul>
+      <TodoList
+        todos={todos}
+        toggleTodoComplete={toggleTodoComplete}
+        deleteTodo={deleteTodo}
+      />
     </div>
   );
 }
