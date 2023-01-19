@@ -1,8 +1,9 @@
 import { RiDeleteBin2Line } from 'react-icons/ri';
+import styles from './TodoItem.module.css';
 
 const TodoItem = ({ id, text, completed, deleteTodo, toggleTodoComplete }) => {
   return (
-    <li>
+    <li className={styles.todo}>
       <input
         type="checkbox"
         checked={completed}
